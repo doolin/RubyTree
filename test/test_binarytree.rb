@@ -39,7 +39,6 @@ require_relative '../lib/tree/binarytree'
 module TestTree
   # Test class for the binary tree node.
   class TestBinaryTreeNode < Test::Unit::TestCase
-
     # Setup the test data scaffolding.
     def setup
       @root = Tree::BinaryTreeNode.new('ROOT', 'Root Node')
@@ -65,9 +64,9 @@ module TestTree
 
     def test_from_hash
       # Can't make a root node without a name
-      assert_raise (ArgumentError) { Tree::BinaryTreeNode.from_hash({})}
+      assert_raise(ArgumentError) { Tree::BinaryTreeNode.from_hash({})}
       # Can't have multiple roots
-      assert_raise (ArgumentError) { Tree::BinaryTreeNode.from_hash({A: {}, B: {}}) }
+      assert_raise(ArgumentError) { Tree::BinaryTreeNode.from_hash({A: {}, B: {}}) }
 
       # Can't have more than 2 children
       too_many_kids = {A: {B: {}, C: {}, D: {}}}
@@ -175,7 +174,7 @@ module TestTree
       f << g
       b << d << c
       d << e
-      g.right_child = i         # This needs to be explicit
+      g.right_child = i # This needs to be explicit
       i << h
 
       # The expected order of response
@@ -184,15 +183,17 @@ module TestTree
       result_array = []
       result = f.inordered_each { |node| result_array << node.detached_copy}
 
-      assert_equal(f, result)   # each should return the original object
+      assert_equal(f, result) # each should return the original object
 
       expected_array.each_index do |idx|
         # Match only the names.
         assert_equal(expected_array[idx].name, result_array[idx].name)
       end
 
-      assert_equal(Enumerator, f.inordered_each.class) if defined?(Enumerator.class )# Without a block
-      assert_equal(Enumerable::Enumerator, f.inordered_each.class) if defined?(Enumerable::Enumerator.class )# Without a block
+      assert_equal(Enumerator, f.inordered_each.class) if defined?(Enumerator.class) # Without a block
+      if defined?(Enumerable::Enumerator.class)
+        assert_equal(Enumerable::Enumerator, f.inordered_each.class)
+      end # Without a block
     end
 
     # Test the left_child method.
@@ -304,7 +305,7 @@ module TestTree
 
       require 'structured_warnings'
 
-      meth_names_for_test = %w{leftChild isLeftChild? rightChild isRightChild?}
+      meth_names_for_test = %w[leftChild isLeftChild? rightChild isRightChild?]
 
       meth_names_for_test.each do |meth_name|
         assert_warn(StructuredWarnings::DeprecatedMethodWarning) {@root.send(meth_name)}
@@ -315,8 +316,6 @@ module TestTree
       # noinspection RubyResolve
       assert_warn(StructuredWarnings::DeprecatedMethodWarning) {@root.rightChild = @right_child2}
       assert_raise(NoMethodError) {@root.DummyMethodDoesNotExist} # Make sure the right method is visible
-
     end
-
   end
 end

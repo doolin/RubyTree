@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 #
 # gemspec for the rubytree gem.
 #
@@ -22,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>=2.4'
 
-  s.summary               = %q{A generic tree data structure.}
+  s.summary               = 'A generic tree data structure.'
   s.description           = <<-EOF
 
     RubyTree is a pure Ruby implementation of the generic tree data structure. It
@@ -56,24 +55,24 @@ Gem::Specification.new do |s|
   s.files               += Dir['spec/**/*.rb'] # Rspec Test cases
   s.files               += Dir['examples/**/*.rb'] # Examples
 
-  s.files               += ['.gemtest']        # Support for gem-test
+  s.files               += ['.gemtest'] # Support for gem-test
 
   s.require_paths        = ['lib']
 
   s.test_files           = Dir.glob('test/**/test_*.rb')
 
-  s.extra_rdoc_files     = %w(README.md LICENSE.md API-CHANGES.rdoc History.rdoc)
+  s.extra_rdoc_files     = %w[README.md LICENSE.md API-CHANGES.rdoc History.rdoc]
   s.rdoc_options         = ['--title', 'Rubytree Documentation', '--quiet']
 
-  s.add_runtime_dependency 'structured_warnings' , '~> 0.4.0'
-  s.add_runtime_dependency 'json'                , '~> 2.3.1'
+  s.add_runtime_dependency 'json', '~> 2.3.1'
+  s.add_runtime_dependency 'structured_warnings', '~> 0.4.0'
 
   # Note: Rake is added as a development and test dependency in the Gemfile.
-  s.add_development_dependency 'bundler'         , '~> 2.1.4'
-  s.add_development_dependency 'rdoc'            , '~> 6.2.1'
-  s.add_development_dependency 'yard'            , '~> 0.9.25'
-  s.add_development_dependency 'rtagstask'       , '~> 0.0.4'
-  s.add_development_dependency 'rspec'           , '~> 3.9.0'
+  s.add_development_dependency 'bundler', '~> 2.1.4'
+  s.add_development_dependency 'rdoc', '~> 6.2.1'
+  s.add_development_dependency 'rspec', '~> 3.9.0'
+  s.add_development_dependency 'rtagstask', '~> 0.0.4'
+  s.add_development_dependency 'yard', '~> 0.9.25'
 
   s.post_install_message = <<-EOF
     ========================================================================
@@ -84,5 +83,4 @@ Gem::Specification.new do |s|
     Details of the API changes are documented in the API-CHANGES file.
     ========================================================================
   EOF
-
 end
